@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Site personnel de AKA KOUAKOU CHRIST — présentation, projets et contact.">
+<title>AKA KOUAKOU CHRIST | Site personnel</title>
+<style>
+:root {
+  --site-primary: #142B3B;
+  --site-on-primary: #FFFFFF;
+  --site-secondary: #D6A85F;
+  --site-on-secondary: #17212A;
+  --site-background: #F4F1EA;
+  --site-on-background: #17212A;
+  --site-font-body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --site-font-heading: Georgia, "Times New Roman", serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  color-scheme: light dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--site-font-body); background: var(--site-background); color: var(--site-on-background); }
+#app { min-height: 100vh; width: 100%; background-color: light-dark(var(--site-background), #101820); color: light-dark(var(--site-on-background), #F2EEE6); border-radius: 0; overflow: hidden; }
+a { color: inherit; }
+.topbar { position: absolute; z-index: 5; top: 0; left: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: calc(25px * var(--site-spacing-scale)) clamp(22px, 6vw, 86px); color: #fff; }
+.brand { font-size: 13px; font-weight: 800; letter-spacing: .18em; }
+nav { display: flex; gap: clamp(15px, 3vw, 34px); }
+nav a { font-size: 12px; text-decoration: none; opacity: .88; transition: opacity .2s; }
+nav a:hover { opacity: 1; color: var(--site-secondary); }
+.hero { min-height: 690px; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 30px; padding: 130px clamp(22px, 9vw, 130px) 90px; color: var(--site-on-primary); background: var(--site-primary); position: relative; isolation: isolate; }
+.hero:before { content: ""; position: absolute; z-index: -1; width: 520px; height: 520px; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; right: 3%; top: 13%; opacity: var(--site-decoration-opacity); }
+.hero:after { content: ""; position: absolute; z-index: -1; width: 390px; height: 390px; border: 1px solid rgba(214,168,95,.28); border-radius: 50%; right: 8%; top: 22%; opacity: var(--site-decoration-opacity); }
+.eyebrow { color: var(--site-secondary); text-transform: uppercase; letter-spacing: .22em; font-size: 11px; font-weight: 700; }
+h1,h2,h3 { font-family: var(--site-font-heading); font-weight: 500; }
+h1 { font-size: clamp(46px, 7vw, 88px); line-height: .99; letter-spacing: -.045em; margin: 22px 0; max-width: 750px; }
+.hero p { max-width: 490px; line-height: 1.8; color: rgba(255,255,255,.72); font-size: 15px; }
+.actions { display: flex; gap: 13px; flex-wrap: wrap; margin-top: 34px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 21px; border-radius: calc(3px * var(--site-radius-scale)); font-size: 12px; font-weight: 750; letter-spacing: .04em; text-decoration: none; transition: transform .2s, background .2s; }
+.btn:hover { transform: translateY(-2px); }
+.btn-gold { background: var(--site-secondary); color: var(--site-on-secondary); }
+.btn-outline { border: 1px solid rgba(255,255,255,.4); color: white; }
+.hero-mark { justify-self: center; width: min(340px, 72%); aspect-ratio: 1; border: 1px solid rgba(214,168,95,.65); border-radius: 50%; display: grid; place-items: center; position: relative; }
+.hero-mark:before { content: ""; position: absolute; inset: 17px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; }
+.initials { font-family: var(--site-font-heading); font-size: clamp(80px, 13vw, 150px); color: var(--site-secondary); letter-spacing: -.09em; padding-right: .09em; }
+.mark-caption { position: absolute; bottom: 35px; font-size: 9px; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+section { padding: 100px clamp(22px, 9vw, 130px); }
+.section-head { max-width: 660px; margin-bottom: 42px; }
+.section-head h2 { font-size: clamp(36px, 5vw, 58px); line-height: 1.05; margin: 14px 0; }
+.section-head p { line-height: 1.8; color: light-dark(#66717A, #B5C0C7); }
+.about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 70px; align-items: start; }
+.about-number { font-family: var(--site-font-heading); font-size: 100px; line-height: 1; color: var(--site-secondary); }
+.about-copy { font-size: 17px; line-height: 1.9; max-width: 700px; }
+.about-copy p { margin-top: 0; }
+.projects { background: light-dark(#E9E4DA, #18242D); }
+.project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.project { min-height: 230px; padding: 28px; border: 1px solid light-dark(#D2CABB, #35434C); display: flex; flex-direction: column; justify-content: space-between; transition: transform .2s, border-color .2s; }
+.project:hover { transform: translateY(-5px); border-color: var(--site-secondary); }
+.project .num { color: var(--site-secondary); font-size: 11px; letter-spacing: .18em; }
+.project h3 { font-size: 27px; margin: 35px 0 8px; }
+.project p { color: light-dark(#65717A, #B5C0C7); font-size: 13px; line-height: 1.7; }
+.contact { background: var(--site-primary); color: white; text-align: center; }
+.contact .section-head { margin: 0 auto 32px; }
+.contact .section-head p { color: rgba(255,255,255,.68); }
+.contact h2 { color: white; }
+.contact-line { color: var(--site-secondary); font-family: var(--site-font-heading); font-size: clamp(25px, 4vw, 40px); margin: 25px 0 35px; }
+footer { display: flex; justify-content: space-between; gap: 20px; padding: 23px clamp(22px, 9vw, 130px); background: light-dark(#101F2B, #0B1218); color: rgba(255,255,255,.7); font-size: 11px; letter-spacing: .04em; }
+footer strong { color: white; }
+@media (max-width: 760px) {
+  .topbar { align-items: flex-start; }
+  nav { gap: 12px; flex-wrap: wrap; justify-content: flex-end; max-width: 55%; }
+  nav a { font-size: 10px; }
+  .hero { min-height: auto; grid-template-columns: 1fr; padding-top: 145px; text-align: center; }
+  .hero p { margin-inline: auto; }
+  .actions { justify-content: center; }
+  .hero-mark { width: 230px; margin-top: 28px; }
+  .about-grid { grid-template-columns: 1fr; gap: 18px; }
+  .about-number { font-size: 72px; }
+  .project-grid { grid-template-columns: 1fr; }
+  section { padding-top: 75px; padding-bottom: 75px; }
+  footer { flex-direction: column; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *:before, *:after { transition-duration: .01ms !important; } }
+</style>
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand">AKC<span style="color:var(--site-secondary)">.</span></div>
+    <nav aria-label="Navigation principale">
+      <a href="#accueil">Accueil</a>
+      <a href="#apropos">À propos</a>
+      <a href="#projets">Activités</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" id="accueil">
+      <div>
+        <div class="eyebrow">Bienvenue dans mon univers</div>
+        <h1>AKA KOUAKOU<br>CHRIST<span style="color:var(--site-secondary)">.</span></h1>
+        <p>Un espace personnel pour présenter mon parcours, mes centres d’intérêt, mes projets et les ambitions qui me font avancer.</p>
+        <div class="actions">
+          <a class="btn btn-gold" href="#apropos">Découvrir mon univers</a>
+          <a class="btn btn-outline" href="#contact">Me contacter</a>
+        </div>
+      </div>
+      <div class="hero-mark" aria-label="Monogramme AKC">
+        <div class="initials">AKC</div>
+        <div class="mark-caption">Identité · Vision · Ambition</div>
+      </div>
+    </section>
+    <section id="apropos">
+      <div class="about-grid">
+        <div>
+          <div class="eyebrow">01 — À propos</div>
+          <div class="about-number">01</div>
+        </div>
+        <div class="about-copy">
+          <div class="section-head"><h2>Apprendre. Créer. Évoluer.</h2></div>
+          <p>Je suis <strong>AKA KOUAKOU CHRIST</strong>. Ce site est ma vitrine personnelle : un endroit où partager mon identité, mes idées, mes expériences et les projets que je construis.</p>
+          <p>Chaque parcours se construit étape par étape. Cette page évoluera avec mes nouvelles compétences, mes réalisations et mes objectifs.</p>
+        </div>
+      </div>
+    </section>
+    <section class="projects" id="projets">
+      <div class="section-head">
+        <div class="eyebrow">02 — Mes activités</div>
+        <h2>Ce qui me fait avancer.</h2>
+        <p>Quelques espaces pour présenter ce qui m’intéresse et ce que je développe. Ils pourront être enrichis avec tes vrais projets et réalisations.</p>
+      </div>
+      <div class="project-grid">
+        <article class="project"><span class="num">01 / APPRENTISSAGE</span><div><h3>Formation</h3><p>Mon parcours d’études, les connaissances acquises et les compétences que je développe.</p></div></article>
+        <article class="project"><span class="num">02 / CRÉATION</span><div><h3>Créativité</h3><p>Mes idées, mes inspirations et les projets créatifs qui prennent forme.</p></div></article>
+        <article class="project"><span class="num">03 / AMBITION</span><div><h3>Projets</h3><p>Mes objectifs, mes initiatives et les prochaines étapes de mon évolution.</p></div></article>
+      </div>
+    </section>
+    <section class="contact" id="contact">
+      <div class="section-head">
+        <div class="eyebrow">03 — Contact</div>
+        <h2>Faisons connaissance.</h2>
+        <p>Une collaboration, une idée ou simplement envie d’échanger ? Contacte-moi par e-mail ou par téléphone.</p>
+      </div>
+      <div class="contact-line">AKA KOUAKOU CHRIST</div>
+      <div class="actions" style="justify-content:center">
+          <a class="btn btn-gold" href="mailto:christkeavaneakakouakou@gmail.com">christkeavaneakakouakou@gmail.com</a>
+        <a class="btn btn-outline" href="tel:+2250798875105">Appeler : 07 98 87 51 05</a>
+      </div>
+    </section>
+  </main>
+  <footer><span>© <span id="year">2026</span> <strong>AKA KOUAKOU CHRIST</strong></span><span>Site personnel · Une identité, une vision.</span></footer>
+</div>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
